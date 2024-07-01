@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Ecom_Food_Cart.Models.tbl_products>
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6 row pl-3">
+                    <div class="flex-column">
+                        <h1 class="mr-3">Products</h1>
+                    </div>
+                </div><!-- /.col -->
+
+                <div class="col-sm-6">
+                    
+                    <a href="@Url.Action("AddProducts","Admin_Catalog")">
+                        <button type="button" class="btn btn-success float-sm-right mr-1" data-toggle="tooltip"
+                                data-placement="top" title="Add Product">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </a>                       
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col col-lg-12 col-md-12">
+
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Products List</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered" id="products_ID">
+                                <thead>
+                                    <tr>
+                                        <th>Image</th>
+                                        <th>Product Name</th>
+                                        <th>Category Name</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Action</th>                                                  </tr>
+                                </thead>
+                                <tbody>
+                                   @foreach (var items in Model)
+                                    {
+                                       <tr>
+                                           <td></td>
+                                           <td>@Html.DisplayFor(modelItems => items.product_Name)</td>
+                                           <td>@Html.DisplayFor(modelItems => items.category_Name)</td>
+                                           <td>@Html.DisplayFor(modelItems => items.price)</td>
+                                           <td>@Html.DisplayFor(modelItems => items.quantity)</td>
+                                           <td style="width: 13%">
+                                               <button type="button" class="btn btn-primary float-sm-right mr-1" data-toggle="tooltip"
+                                                       data-placement="top" title="Edit">
+                                                   <i class="fas fa-pencil-alt"></i>
+                                               </button>
+
+                                               <button type="button" class="btn btn-danger float-sm-right mr-1" data-toggle="tooltip"
+                                                       data-placement="top" title="Delete">
+                                                   <i class="fa fa-trash"></i>
+                                               </button>
+                                           </td>
+                                       </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+

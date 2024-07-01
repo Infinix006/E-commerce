@@ -1,0 +1,9 @@
+[
+    { "img_src": "https://demo.opencart.com/image/cache/catalog/demo/canon_eos_5d_1-40x40.jpg", "img_alt": "Canon EOS 5D"," product_name": "Canon EOS 5D", "product_n_small": "Enabled", "model": "Product 3", "price": "$100.00", "dprice": "$80.00", "quantity": "2147483642" },
+    { "img_src": "https://demo.opencart.com/image/cache/catalog/demo/apple_cinema_30-40x40.jpg", "img_alt": "Apple Cinema 30", "product_name": "Apple Cinema 30", "product_n_small": "Enabled", "model": "Product 15", "price": "$100.00", "dprice": "$90.00", "quantity": "990" },
+    { "img_src": "https://demo.opencart.com/image/cache/catalog/demo/hp_1-40x40.jpg", "img_alt": "HP LP3065", "product_name": "HP LP3065", "product_n_small": "Enabled", "model": "Product 21", "price": "$100.00", "dprice": "", "quantity": "1000" },
+    { "img_src": "https://demo.opencart.com/image/cache/catalog/demo/htc_touch_hd_1-40x40.jpg"," img_alt": "HTC Touch HD", "product_name": "HTC Touch HD", "product_n_small": "Enabled", "model": "Product 1", "price": "$100.00", "dprice": "", "quantity": "939" },
+    { "img_src": "https://demo.opencart.com/image/cache/catalog/demo/imac_1-40x40.jpg", "img_alt": "iMac", "product_name": "iMac", "product_n_small": "Enabled", "model": "Product 14", "price": "$100.00", "dprice": "", "quantity": "975" },
+    { "img_src": "https://demo.opencart.com/image/cache/catalog/demo/imac_1-40x40.jpg", "img_alt": "iMac", "product_name": "iMac", "product_n_small": "Enabled", "model": "Product 14", "price": "$100.00", "dprice": "", "quantity": "975" }
+
+]

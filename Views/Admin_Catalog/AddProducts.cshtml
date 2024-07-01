@@ -1,0 +1,174 @@
+﻿@model Ecom_Food_Cart.Models.tbl_products
+
+@{
+    ViewBag.Title = "Add Products";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("AddProducts", "Admin_Catalog", FormMethod.Post))
+{
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2 ">
+                    <div class="col-sm-6 row pl-3">
+                        <div class="flex-column">
+                            <h1 class="mr-3">Products</h1>
+                        </div>
+                        <div class="col">
+                            <ol class="breadcrumb float-sm-left ml-0">
+                                <li class="breadcrumb-item"><a href=@Url.Action("Dashboard", "Admin_Dashboard")>Home</a></li>
+                                <li class="breadcrumb-item active">Products</li>
+                            </ol>
+                        </div>
+
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <a href="@Url.Action("Products", "Admin_Catalog")" style="text-decorations:none; color:inherit; ">
+                            <button type="button" class="btn btn-light float-sm-right mr-1" data-toggle="tooltip"
+                                    data-placement="top" title="Back">
+                                <i class="fa fa-backward"></i>
+                            </button>
+                        </a>
+
+                        <button type="submit" class="btn btn-success float-sm-right mr-1" data-toggle="tooltip"
+                                data-placement="top" title="Save">
+                            <i class="fa fa-save"></i>
+                        </button>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+
+
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Product</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="padding-top: 0px;">
+                            <div class="ml-3 mr-3">
+                                <!-- Row-1 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="Product_Name" class="pr-5" style="font-weight: normal;">Product Name:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        @Html.TextBoxFor(e => e.product_Name, new { @class = "form-control", id = "product_Name", placeholder = "Product Name", required = "required" })
+                                        @*<input class="form-control" id="Product_Name" name="product_Name" placeholder="Product Name" required="required" type="text" value="">*@
+
+                                    </div>
+                                </div>
+                                <!-- Row-2 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="Category_Name" class="pr-5" style="font-weight: normal;">Category Name:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        @Html.DropDownListFor(e => e.categoryId, new SelectList(ViewBag.categorylist, "categoryId", "category_Name"),"--Select Category--", new { @class = "form-control", id = "product_Name", placeholder = "Product Name", required = "required" })
+                                    </div>
+                                </div>
+
+                                <!-- Row-3 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="Store_Name" class="pr-5" style="font-weight: normal;">Store Name:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        <input class="form-control" data-val="true" data-val-number="The field storeId must be a number." data-val-required="The storeId field is required." id="Store_Name" name="storeId" placeholder="Store Name" required="required" type="text" value="">
+
+                                    </div>
+                                </div>
+
+                                <!-- Row-4 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="Price" class="pr-5" style="font-weight: normal;">Price:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        @Html.TextBoxFor(model => model.price, new { @class = "form-control", id = "price",  placeholder = "Price", required = "required" })
+                                    </div>
+                                </div>
+
+                                <!-- Row-5 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="Quantity" class="pr-5" style="font-weight: normal;">Quantity:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        @Html.TextBoxFor(model => model.quantity, new { @class = "form-control", id = "quantity", placeholder = "Quantity", required = "required" })
+                                    </div>
+                                </div>
+
+                                <!-- Row-6 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="Description" class="pr-5" style="font-weight: normal;">Description:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        @Html.TextBoxFor(model => model.description, new { @class = "form-control", id = "description", placeholder = "Description", required = "required" })
+                                    </div>
+                                </div>
+                                <!-- Row-7 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="image" class="pr-5"
+                                               style="font-weight: normal;">Image:</label>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="mb-4 d-flex justify-content-start">
+                                            <img id="selectedImage"
+                                                 src="https://mdbootstrap.com/img/Photos/Others/placeholder.jpg"
+                                                 alt="example placeholder" style="width: 200px;" />
+                                        </div>
+                                        <div class="d-flex justify-content-start">
+                                            <div class="btn-xs btn-primary btn-rounded">
+                                                <label class="form-label text-white m-1"
+                                                       for="customFile1">
+                                                    Choose
+                                                    file
+                                                </label>
+                                                <input type="file" class="form-control d-none" id="customFile1"
+                                                       onchange="displaySelectedImage(event, 'selectedImage')" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+}
+
+@section scriptaddprod{
+    <script>
+        function displaySelectedImage(event, elementId) {
+            const selectedImage = document.getElementById(elementId);
+            const fileInput = event.target;
+
+            if (fileInput.files && fileInput.files[0]) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    selectedImage.src = e.target.result;
+                };
+
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    </script>
+}

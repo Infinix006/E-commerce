@@ -1,0 +1,90 @@
+﻿@model Ecom_Food_Cart.Models.tbl_categories
+@{
+    ViewBag.Title = "EditCategories";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@using (Html.BeginForm("UpdateCategory", "Admin_Catalog", FormMethod.Post))
+{
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2 ">
+                    <div class="col-sm-6 row pl-3">
+                        <div class="flex-column">
+                            <h1 class="mr-3">Categories</h1>
+                        </div>
+                    </div><!-- /.col -->
+
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-light float-sm-right mr-1" data-toggle="tooltip"
+                                data-placement="top" title="Back">
+                            <a href="" style="text-decorations:none; color:inherit; "><i class="fa fa-backward"></i></a>
+
+                        </button>
+                        
+                       
+                        <button type="submit" class="btn btn-success float-sm-right mr-1" data-toggle="tooltip"
+                                data-placement="top" title="Save">
+                            <i class="fa fa-save"></i>
+                        </button>
+                        
+                        
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+
+
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Edit Category</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="padding-top: 0px;">
+                            @Html.HiddenFor(e => e.categoryId)
+
+                            <div class="ml-3 mr-3">
+                                <!-- Row-1 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="category_Name" class="pr-5" style="font-weight: normal;">Category Name:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        @Html.TextBoxFor(e => e.category_Name, new { id = "category_Name", type = "text", @class = "form-control", placeholder = "Category Name", required = "required" })
+                                    </div>
+                                </div>
+
+                                <!-- Row-1 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="sort_Order" class="pr-5" style="font-weight: normal;">Sort Order:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+
+                                        @Html.TextBoxFor(e => e.sort_Order, new { id = "sort_Order", type = "text", @class = "form-control", placeholder = "Sort Order", required = "required" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+}
+

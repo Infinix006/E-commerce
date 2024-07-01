@@ -1,0 +1,135 @@
+﻿@model Ecom_Food_Cart.Models.tbl_categories
+@{
+    ViewBag.Title = "Add Categories";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+@using (Html.BeginForm("AddCategories", "Admin_Catalog", FormMethod.Post, new { id = "addCategoryForm" }))
+{
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2 ">
+                    <div class="col-sm-6 row pl-3">
+                        <div class="flex-column">
+                            <h1 class="mr-3">Categories</h1>
+                        </div>
+                        <div class="col">
+                            <ol class="breadcrumb float-sm-left ml-0">
+                                <li class="breadcrumb-item"><a href=@Url.Action("Dashboard", "Admin_Dashboard")>Home</a></li>
+                                <li class="breadcrumb-item active">Categories</li>
+                            </ol>
+                        </div>
+
+                    </div><!-- /.col -->
+
+                    <div class="col-sm-6">
+                        <button type="button" class="btn btn-light float-sm-right mr-1" data-toggle="tooltip"
+                                data-placement="top" title="Back">
+                            <a href="@Url.Action("Categories","Admin_Catalog")" style="text-decorations:none; color:inherit; "><i class="fa fa-backward"></i></a>
+
+                        </button>
+
+                        <button type="submit" class="swalDefaultSuccess btn btn-success float-sm-right mr-1 " data-toggle="tooltip"
+                                data-placement="top" title="Save">
+                            <i class="fa fa-save"></i>
+                        </button>
+                        <button type="button" class="btn btn-success swalDefaultSuccess">
+                            Launch Success Toast
+                        </button>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+
+
+                <div class="col-12">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Add Category</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body" style="padding-top: 0px;">
+
+
+                            <div class="ml-3 mr-3">
+                                <!-- Row-1 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="category_Name" class="pr-5" style="font-weight: normal;">Category Name:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+                                        @Html.TextBoxFor(e => e.category_Name, new { id = "category_Name", type = "text", @class = "form-control", placeholder = "Category Name", required = "required" })
+                                    </div>
+                                </div>
+
+                                <!-- Row-1 -->
+                                <div class="form-row mt-3">
+                                    <div class="col-md-3 text-left">
+                                        <label for="sort_Order" class="pr-5" style="font-weight: normal;">Sort Order:</label>
+                                    </div>
+                                    <div class="col-md-9 ">
+
+                                        @Html.TextBoxFor(e => e.sort_Order, new { id = "sort_Order", type = "text", @class = "form-control", placeholder = "Sort Order", required = "required" })
+
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+}
+
+@section AddCategories{
+    <script>
+        $(function() {
+            $('#addCategoryForm').submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    url: this.action,
+                    type: this.method,
+                    data: $(this).serialize(),
+                    success: function (response)
+                    {
+                        Swal.fire({
+                            toast: true,
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Category added successfully!',
+                            showConfirmButton: false,
+                            timer: 3000
+                        }).then(function() {
+                            window.location.href = '@Url.Action("Categories", "Admin_Catalog")';
+                        });
+                    },
+                    error: function(xhr, status, error) {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error adding category',
+                            text: error
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
+}
+
+

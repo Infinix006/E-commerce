@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Customers";
+    Layout = "~/Views/Shared/Admin_Layout.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-8 row pl-3">
+                    <div class="flex-column">
+                        <h1 class="mr-3">Customers</h1>
+                    </div>
+                    
+                </div><!-- /.col -->
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-danger float-sm-right mr-1" data-toggle="tooltip"
+                            data-placement="top" title="Delete">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                                       
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">Customers List</h3>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            <table class="table table-bordered" id="customers_Table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%"><input type="checkbox"></th>
+                                        <th style="width: 25%">Customer Name</th>
+                                        <th style="width: 30%">Email</th>
+                                        <th style="width: 15%">Customer Group</th>
+                                        <th style="width: 12%">Status</th>
+                                        <th style="width: 15%">Date Added</th>
+                                        <th style="width: 10%">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+                                    <!-- table body -->
+
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <ul class="pagination pagination-sm m-0 float-right">
+                                <li class="page-item"><a class="page-link" href="#">«</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item"><a class="page-link" href="#">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

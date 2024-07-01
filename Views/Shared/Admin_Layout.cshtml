@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/admin/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Content/admin/plugins/summernote/summernote-bs4.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- Style Sheet -->
+    <link href="~/Content/admin/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="wrapper">
+
+        <!-- Preloader -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="~/Content/admin/dist/img/AdminLTELogo.png" alt="AdminLogo" height="60" width="60">
+        </div>
+
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href=@Url.Action("Dashboard","Admin_Dashboard") class="nav-link">Home</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Contact</a>
+                </li>
+            </ul>
+
+
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a href="#" class="brand-link">
+                <img src="~/Content/admin/dist/img/AdminLTELogo.png" alt="Admin Logo" class="brand-image img-circle elevation-3"
+                     style="opacity: .8">
+                <span class="brand-text font-weight-light">Foodie Wheels</span>
+            </a>
+
+
+
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="~/Content/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">@Session["Admin_UserName"]</a>
+                    </div>
+                </div>
+
+                <!-- SidebarSearch Form -->
+                <div class="form-inline">
+                    <div class="input-group" data-widget="sidebar-search">
+                        <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+                        <div class="input-group-append">
+                            <button class="btn btn-sidebar">
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                        <!-- Dashboard -->
+                        <li class="nav-item">
+                            <a href="@Url.Action("Dashboard", "Admin_Dashboard")" class="@(Request.Url.AbsolutePath == Url.Action("Dashboard", "Admin_Dashboard") ? "nav-link active" : "nav-link")">
+                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                                <p>
+                                    Dashboard
+                                </p>
+                            </a>
+                        </li>
+
+
+                        <!-- Catalog -->
+
+                        <li class="@(Request.Url.AbsolutePath == Url.Action("Categories", "Admin_Catalog") ? "nav-item menu-open" : "nav-item")
+                              @(Request.Url.AbsolutePath == Url.Action("Products", "Admin_Catalog") ? "nav-item menu-open" : "nav-item")
+                            @(Request.Url.AbsolutePath == Url.Action("AddCategories", "Admin_Catalog") ? "nav-item menu-open" : "nav-item")
+                            @(Request.Url.AbsolutePath == Url.Action("AddProducts", "Admin_Catalog") ? "nav-item menu-open" : "nav-item")
+                                                                                                                                        ">
+
+                            <a href="#" class="@(Request.Url.AbsolutePath == Url.Action("Categories", "Admin_Catalog") ? "nav-link active" : "nav-link")
+                               @(Request.Url.AbsolutePath == Url.Action("Products", "Admin_Catalog") ? "nav-link active" : "nav-link")
+
+                               @(Request.Url.AbsolutePath == Url.Action("AddCategories", "Admin_Catalog") ? "nav-link active" : "nav-link")
+                               @(Request.Url.AbsolutePath == Url.Action("AddProducts", "Admin_Catalog") ? "nav-link active" : "nav-link")
+                               ">
+                                <i class="nav-icon fas fa-clone pr-2"></i>
+                                <p>
+                                    Cataolg
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Categories", "Admin_Catalog")" class="@(Request.Url.AbsolutePath == Url.Action("Categories", "Admin_Catalog") ? "nav-link active" : "nav-link")
+                                                                                                @(Request.Url.AbsolutePath == Url.Action("AddCategories", "Admin_Catalog") ? "nav-link active" : "nav-link")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Categories</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Products", "Admin_Catalog")" class="@(Request.Url.AbsolutePath == Url.Action("Products", "Admin_Catalog") ? "nav-link active" : "nav-link")
+                                @(Request.Url.AbsolutePath == Url.Action("AddProducts", "Admin_Catalog") ? "nav-link active" : "nav-link")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Products</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+
+                        <!-- Sales -->
+                        <li class="@(Request.Url.AbsolutePath == Url.Action("Order","Admin_Sales") ? "nav-item menu-open" : "nav-item")
+                              @(Request.Url.AbsolutePath == Url.Action("Return","Admin_Sales") ? "nav-item menu-open" : "nav-item")
+                             ">
+                            <a href="#" class="@(Request.Url.AbsolutePath == Url.Action("Order","Admin_Sales") ? "nav-link active" : "nav-link")
+                              @(Request.Url.AbsolutePath == Url.Action("Return","Admin_Sales") ? "nav-link active" : "nav-link")">
+                                <!-- <i class="nav-icon fas fa-tachometer-alt"></i> -->
+                                <i class="nav-icon fas fa-shopping-cart"></i>
+                                <p>
+                                    Sales
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Order","Admin_Sales")" class="@(Request.Url.AbsolutePath == Url.Action("Order","Admin_Sales") ? "nav-link active" : "nav-link")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Orders</p>
+                                    </a>
+                                </li>
+                                @*<li class="nav-item">
+                                    <a href="@Url.Action("Return","Admin_Sales")" class="@(Request.Url.AbsolutePath == Url.Action("Return","Admin_Sales") ? "nav-link active" : "nav-link")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Returns</p>
+                                    </a>
+                                </li>*@
+                            </ul>
+                        </li>
+
+
+                        <!-- Customer -->
+
+                        <li class="@(Request.Url.AbsolutePath == Url.Action("Customers","Admin_Customers") ? "nav-item menu-open" : "nav-item")">
+                            <a href="#" class="@(Request.Url.AbsolutePath == Url.Action("Customers","Admin_Customers") ? "nav-link active" : "nav-link")">
+                                <i class="nav-icon fas fa-user-alt"></i>
+                                <p>
+                                    Customers
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="@Url.Action("Customers","Admin_Customers")" class="@(Request.Url.AbsolutePath == Url.Action("Customers","Admin_Customers") ? "nav-link active" : "nav-link")">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Customers</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+
+
+        @RenderBody();
+
+
+
+        <footer class="main-footer">
+            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
+            All rights reserved.
+            <div class="float-right d-none d-sm-inline-block">
+                <b>Version</b> 3.2.0
+            </div>
+        </footer>
+
+
+
+        <!-- style -->
+
+        <style>
+            body {
+                overflow: scroll !important;
+                /* Always display scrollbars */
+            }
+        </style>
+
+
+
+
+        <!-- Control Sidebar -->
+        <!--<aside class="control-sidebar control-sidebar-dark">-->
+        <!-- Control sidebar content goes here -->
+        <!--</aside>-->
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/Content/admin/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Content/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+    </script>
+    <!-- SweetAlert2 -->
+    <script src="~/Content/Admin/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/Content/admin/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Content/admin/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Content/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Content/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/Content/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Content/admin/plugins/moment/moment.min.js"></script>
+    <script src="~/Content/admin/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/Content/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/Content/admin/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/Content/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/admin/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <!--<script src="~/Content/admin/dist/js/demo.js"></script>-->
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <script src="~/Content/admin/dist/js/pages/dashboard.js"></script>
+
+    <!-- Rendersection -->
+    @RenderSection("scriptaddcat", required: false);
+    @RenderSection("scriptaddprod", required: false);
+    @RenderSection("AddCategories", required: false);
+
+</body>
+</html>
+
+
+
+

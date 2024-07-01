@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ecom_databaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_admin">
+    <Key>
+      <PropertyRef Name="adminId" />
+    </Key>
+    <Property Name="adminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tbl_banner">
+    <Key>
+      <PropertyRef Name="bannerId" />
+    </Key>
+    <Property Name="bannerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="banner_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_category">
+    <Key>
+      <PropertyRef Name="categoryId" />
+    </Key>
+    <Property Name="categoryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_product" Relationship="Self.FK_tbl_product_tbl_category" FromRole="tbl_category" ToRole="tbl_product" />
+  </EntityType>
+  <EntityType Name="tbl_customer">
+    <Key>
+      <PropertyRef Name="customerId" />
+    </Key>
+    <Property Name="customerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="mob_number" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="account_Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="order_Note" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_order" Relationship="Self.FK_tbl_order_tbl_customer" FromRole="tbl_customer" ToRole="tbl_order" />
+  </EntityType>
+  <EntityType Name="tbl_order">
+    <Key>
+      <PropertyRef Name="orderId" />
+    </Key>
+    <Property Name="orderId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="customerId" Type="Int32" Nullable="false" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <Property Name="order_total" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="order_date" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tbl_customer" Relationship="Self.FK_tbl_order_tbl_customer" FromRole="tbl_order" ToRole="tbl_customer" />
+    <NavigationProperty Name="tbl_product" Relationship="Self.FK_tbl_order_tbl_product" FromRole="tbl_order" ToRole="tbl_product" />
+  </EntityType>
+  <EntityType Name="tbl_product">
+    <Key>
+      <PropertyRef Name="productId" />
+    </Key>
+    <Property Name="productId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="categoryId" Type="Int32" Nullable="false" />
+    <Property Name="product_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="price" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="storeId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_category" Relationship="Self.FK_tbl_product_tbl_category" FromRole="tbl_product" ToRole="tbl_category" />
+    <NavigationProperty Name="tbl_order" Relationship="Self.FK_tbl_order_tbl_product" FromRole="tbl_product" ToRole="tbl_order" />
+    <NavigationProperty Name="tbl_product_image" Relationship="Self.FK_tbl_product_image_tbl_product" FromRole="tbl_product" ToRole="tbl_product_image" />
+    <NavigationProperty Name="tbl_store" Relationship="Self.FK_tbl_product_tbl_store" FromRole="tbl_product" ToRole="tbl_store" />
+  </EntityType>
+  <EntityType Name="tbl_product_image">
+    <Key>
+      <PropertyRef Name="product_imageId" />
+    </Key>
+    <Property Name="product_imageId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="image_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tbl_product" Relationship="Self.FK_tbl_product_image_tbl_product" FromRole="tbl_product_image" ToRole="tbl_product" />
+  </EntityType>
+  <EntityType Name="tbl_store">
+    <Key>
+      <PropertyRef Name="storeId" />
+    </Key>
+    <Property Name="storeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="store_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tbl_product" Relationship="Self.FK_tbl_product_tbl_store" FromRole="tbl_store" ToRole="tbl_product" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="userId" />
+    </Key>
+    <Property Name="userId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_tbl_product_tbl_category">
+    <End Role="tbl_category" Type="Self.tbl_category" Multiplicity="1" />
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_category">
+        <PropertyRef Name="categoryId" />
+      </Principal>
+      <Dependent Role="tbl_product">
+        <PropertyRef Name="categoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_order_tbl_customer">
+    <End Role="tbl_customer" Type="Self.tbl_customer" Multiplicity="1" />
+    <End Role="tbl_order" Type="Self.tbl_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_customer">
+        <PropertyRef Name="customerId" />
+      </Principal>
+      <Dependent Role="tbl_order">
+        <PropertyRef Name="customerId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_order_tbl_product">
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="1" />
+    <End Role="tbl_order" Type="Self.tbl_order" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="tbl_order">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_image_tbl_product">
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="1" />
+    <End Role="tbl_product_image" Type="Self.tbl_product_image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_product">
+        <PropertyRef Name="productId" />
+      </Principal>
+      <Dependent Role="tbl_product_image">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_product_tbl_store">
+    <End Role="tbl_store" Type="Self.tbl_store" Multiplicity="1" />
+    <End Role="tbl_product" Type="Self.tbl_product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_store">
+        <PropertyRef Name="storeId" />
+      </Principal>
+      <Dependent Role="tbl_product">
+        <PropertyRef Name="storeId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ecom_databaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="tbl_admin" EntityType="Self.tbl_admin" />
+    <EntitySet Name="tbl_banner" EntityType="Self.tbl_banner" />
+    <EntitySet Name="tbl_category" EntityType="Self.tbl_category" />
+    <EntitySet Name="tbl_customer" EntityType="Self.tbl_customer" />
+    <EntitySet Name="tbl_order" EntityType="Self.tbl_order" />
+    <EntitySet Name="tbl_product" EntityType="Self.tbl_product" />
+    <EntitySet Name="tbl_product_image" EntityType="Self.tbl_product_image" />
+    <EntitySet Name="tbl_store" EntityType="Self.tbl_store" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" />
+    <AssociationSet Name="FK_tbl_product_tbl_category" Association="Self.FK_tbl_product_tbl_category">
+      <End Role="tbl_category" EntitySet="tbl_category" />
+      <End Role="tbl_product" EntitySet="tbl_product" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_order_tbl_customer" Association="Self.FK_tbl_order_tbl_customer">
+      <End Role="tbl_customer" EntitySet="tbl_customer" />
+      <End Role="tbl_order" EntitySet="tbl_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_order_tbl_product" Association="Self.FK_tbl_order_tbl_product">
+      <End Role="tbl_product" EntitySet="tbl_product" />
+      <End Role="tbl_order" EntitySet="tbl_order" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_image_tbl_product" Association="Self.FK_tbl_product_image_tbl_product">
+      <End Role="tbl_product" EntitySet="tbl_product" />
+      <End Role="tbl_product_image" EntitySet="tbl_product_image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_product_tbl_store" Association="Self.FK_tbl_product_tbl_store">
+      <End Role="tbl_store" EntitySet="tbl_store" />
+      <End Role="tbl_product" EntitySet="tbl_product" />
+    </AssociationSet>
+    <EntitySet Name="tbl_billing_details" EntityType="ecom_databaseModel.tbl_billing_details" />
+  </EntityContainer>
+  <EntityType Name="tbl_billing_details">
+    <Key>
+      <PropertyRef Name="billing_details_id" />
+    </Key>
+    <Property Name="billing_details_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="orderId" Type="Int32" Nullable="false" />
+    <Property Name="first_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="last_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="country" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="postal_code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="phone_no" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,140 @@
+﻿@model Ecom_Food_Cart.Models.tbl_admin
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Log in</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/Admin/dist/css/adminlte.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet" href="~/Content/Admin/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+</head>
+
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href=""><b>Foodie Wheels</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <h5 class="login-box-msg">Admin Login</h5>
+
+                @using (Html.BeginForm("Admin_Login", "Login_Registration", FormMethod.Post, new { id = "myForm" }))
+                {
+                    <div class="form-group mb-3">
+                        <div class="input-group mb-1">
+                            @Html.TextBoxFor(e => e.email, new { id = "email", type = "email", @class = "form-control", placeholder = "Email", required = "required" })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-1">
+                            @Html.ValidationMessageFor(e => e.email, "", new { @class = "text-danger", @style = "font-size: 13px" })
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <div class="input-group mb-1">
+                            @Html.PasswordFor(e => e.password, new { id = "password", type = "password", @class = "form-control", @placeholder = "Password", required = "required", pattern = "(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}", title = "Requires: 1 number, 1 uppercase & 1 lowercase letter, and minimum 8 characters." })
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-group mb-1">
+                            @Html.ValidationMessageFor(e => e.password, "", new { @class = "text-danger", @style = "font-size: 13px" })
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button class="btn btn-primary btn-block swalDefaultSuccess" type="submit">Sign In</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                }
+
+                <div class="social-auth-links text-center mb-3">
+                    <p>- OR -</p>
+
+                </div>
+                <!-- /.social-auth-links -->
+
+                <p class="mb-1">
+                    <a href=@Url.Action("User_Login","Login_Registration")>User Login</a>
+                </p>
+                <p class="mb-1">
+                    <a href="forgot-password.html">I forgot my password</a>
+                </p>
+                <p class="mb-0">
+                    <a href=@Url.Action("Admin_Register","Login_Registration") class="text-center">Register a new Admin</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+
+        </div>
+        <!-- /.login-box -->
+        @section scripts {
+            @Scripts.Render("~/bundles/jqueryval")
+        }
+        <!-- jQuery -->
+        <script src="~/Content/Admin/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="~/Content/Admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="~/Content/Admin/dist/js/adminlte.min.js"></script>
+        <!-- SweetAlert2 -->
+        <script src="~/Content/Admin/plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- Page specific script -->
+        <script>
+            
+            $(function () {
+var Toast = Swal.mixin({
+    toast: true,
+    position: 'top-end',
+    showConfirmButton: false,
+    timer: 3000
+});
+
+$('#myForm').submit( function () {
+    Toast.fire({
+        icon: 'success',
+        title: '@TempData["ToastMessage"]'
+    })
+});
+});
+        </script>
+    @if (TempData["ToastMessage"] != null)
+    {
+
+    }
+</body>
+
+</html>

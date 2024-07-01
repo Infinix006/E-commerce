@@ -1,0 +1,12 @@
+[
+    { "options_name": "Checkbok", "sortOrder": "2" },
+    { "options_name": "Date", "sortOrder": "7" },
+    { "options_name": "Date & Time", "sortOrder": "9" },
+    { "options_name": "Delivery Date", "sortOrder": "11" },
+    { "options_name": "File", "sortOrder": "6" },
+    { "options_name": "Radio", "sortOrder": "1" },
+    { "options_name": "Select", "sortOrder": "4" },
+    { "options_name": "Size", "sortOrder": "10" },
+    { "options_name": "Text", "sortOrder": "3" },
+    { "options_name": "Textarea", "sortOrder": "5" }
+]
