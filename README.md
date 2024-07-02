@@ -1,2 +1,2 @@
 # Ecom-Food-Cart
-Ecomerse 
+Eommerce
